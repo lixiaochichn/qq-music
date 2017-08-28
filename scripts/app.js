@@ -3,6 +3,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+
+    class Slider {
+        constructor(options = {}) {
+            this.$el = options.$el
+            this.sliders = options.sliders
+            this.interval = options.interval || 3000
+            this.duration = options.duration || 300
+            this.index = 0
+            this.render()
+            this.start()
+        }
+
+        render() {
+            this.$el.innerHTML = '<div class="qq-slider-wrap"></div>'
+            this.$wrap = this.$el.firstElementChild
+            this.$wrap.style.transitionDuration = `${this.duration}ms`
+            this.$wrap.style.width = `${this.sliders.length * 100}%`
+            this.$wrap.innerHTML = this.sliders.map(slider => 
+                `<div class="qq-slider-item"><a href=${slider.url}><img src="${slider.img}"></a></div>`
+            ).join('')
+        }
+
+        start() {
+            setInterval(this.next.bind(this), this.interval)
+        }
+
+        next() {
+            this.index += 1;
+            if (this.index === this.sliders.length) {
+                this.$wrap.style.transform = `translate(0)`
+                this.index = 0
+                return
+            };
+            this.$wrap.style.transform = `translate(-${this.index/this.sliders.length*100}%)`;
+        }
+
+    };
+
+
     let slider = new Slider({
         $el: document.querySelector('#qq-slider'),
         sliders: [{
@@ -24,41 +64,11 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 url: "#",
                 img: "images/xl.jpg"
-            },
+            }
         ]
     });
 
     window.slider = slider;
-
-    class Slider {
-        constructor(options = {}) {
-            this.$el = options.$el
-            this.sliders = options.sliders
-            this.intercal = options.interval || 3000
-            this.duration = iptions.duration || 300
-            this.index = 0
-            this.render()
-            this.star()
-        }
-
-        render() {
-            this.$el.innerHTML = '<div class="qq-slider-wrap"></div>'
-            this.$wrap = this.$el.firstElementChild
-            this.$wrap.style.transitionDuration = `${this.duration}ms`
-            this.$wrap.style.width = `${this.slides.length * 100}%`
-            this.$wrap.innerHTML = this.sliders.map(slider => {
-                `<div class="qq-slider-item"><a href=${slider.url}><img src="${slider.img}"></a></div>`
-            }).join('')
-        }
-
-        ster() {
-
-        }
-
-    };
-
-
-
 
 
 
