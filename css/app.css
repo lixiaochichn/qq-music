@@ -1,0 +1,80 @@
+@charset "UTF-8";
+.header {
+  height: 44px;
+  background-color: #31c27c;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .header > a > img {
+    height: 25px;
+    margin-left: 10px; }
+  .header > .download {
+    background: #149c5a;
+    width: 81.05px;
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
+    border-radius: 14px;
+    font-size: 14px;
+    color: #fff;
+    padding: 0 12px;
+    margin: 0 10px;
+    text-decoration: none; }
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  height: 40px; }
+  .nav-list > .nav-item {
+    color: rgba(0, 0, 0, 0.6);
+    flex: 1;
+    text-align: center;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px; }
+    .nav-list > .nav-item.active {
+      color: #31c27c; }
+    .nav-list > .nav-item.active::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      left: 0;
+      height: 2px;
+      background: #31c27c; }
+
+* {
+  box-sizing: border-box;
+  /*手机网站点击链接触发颜色块的问题解决*/
+  -webkit-tap-highlight-color: transparent;
+  /*蓝框*/
+  outline: none;
+  /*禁止选择*/
+  user-select: none;
+  margin: 0;
+  padding: 0; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  font: 12px/1.5 "hiragino sans gb",arial; }
+
+ul {
+  list-style: none; }
+
+.views > .hide {
+  display: none; }
+
+.qq-slider {
+  overflow: hidden; }
+  .qq-slider > .qq-slider-wrap {
+    display: flex;
+    width: 500%; }
+  .qq-slider > .qq-slider-wrap > a > img {
+    width: 100%; }
