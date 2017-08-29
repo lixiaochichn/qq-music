@@ -1,9 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('aaa');
-
-
-
-
+    // console.log('aaa');
 
     class Slider {
         constructor(options = {}) {
