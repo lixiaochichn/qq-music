@@ -63,7 +63,8 @@ body {
   margin: 0;
   padding: 0;
   background: #f4f4f4;
-  font: 12px/1.5 "hiragino sans gb",arial; }
+  font: 12px/1.5 "hiragino sans gb",arial;
+  min-width: 320px; }
 
 ul {
   list-style: none; }
@@ -89,36 +90,57 @@ a {
         display: block; }
 
 .two-cool-list {
-  margin: 0 10px 7px 10px; }
+  margin: 0 2px 7px 10px; }
   .two-cool-list > h2 {
     font-size: 16px;
     color: #000;
     margin-bottom: 11px;
     font-weight: normal; }
-  .two-cool-list > ul {
+  .two-cool-list .play-radio {
     display: flex;
     justify-content: space-between;
-    height: 202px; }
-    .two-cool-list > ul > li > a {
+    width: 100%;
+    padding-right: -10px; }
+    .two-cool-list .play-radio .radio-item {
+      flex: 1;
+      margin-right: 8px;
+      flex-basis: 40%;
       display: block;
-      height: 192px;
-      background: #fff;
-      text-decoration: none; }
-      .two-cool-list > ul > li > a > img {
-        width: 146px;
-        height: 146px; }
-      .two-cool-list > ul > li > a > h3 {
-        font-size: 14px;
-        font-weight: normal;
-        height: 36px;
-        line-height: 18px;
-        color: #000;
+      background: #fff; }
+      .two-cool-list .play-radio .radio-item .radio-link {
+        width: 100%;
         display: block;
-        width: 132px;
-        padding: 0 7px 5px 7px; }
+        background: #fff;
+        text-decoration: none;
+        position: relative; }
+        .two-cool-list .play-radio .radio-item .radio-link .radio-img {
+          display: block;
+          width: 100%;
+          min-height: 145px;
+          margin-bottom: 5px; }
+        .two-cool-list .play-radio .radio-item .radio-link .icon {
+          background-repeat: no-repeat;
+          background-size: 24px 60px;
+          background-image: url("../images/list_sprite.png"); }
+        .two-cool-list .play-radio .radio-item .radio-link .icon-play {
+          height: 24px;
+          bottom: 46px;
+          right: 5px;
+          width: 24px;
+          position: absolute;
+          background-position: 0 0; }
+        .two-cool-list .play-radio .radio-item .radio-link .radio-title {
+          font-size: 14px;
+          font-weight: normal;
+          height: 36px;
+          line-height: 18px;
+          color: #000;
+          display: block;
+          width: 100%;
+          padding: 0 7px 5px 7px; }
 
 .hot-music-list {
-  margin: 0 10px 7px 10px;
+  margin: 2px 10px 7px 10px;
   height: 75px; }
   .hot-music-list > h2 {
     font-size: 16px;
