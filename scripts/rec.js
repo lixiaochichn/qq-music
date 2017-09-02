@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <h3>${songList.songListAuthor}</h3>
         </div>
         </a></li>
-        `).join()
+        `).join('')
 
     }
 
