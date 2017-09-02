@@ -63,8 +63,7 @@ body {
   margin: 0;
   padding: 0;
   background: #f4f4f4;
-  font: 12px/1.5 "hiragino sans gb",arial;
-  min-width: 320px; }
+  font: 12px/1.5 "hiragino sans gb",arial; }
 
 ul {
   list-style: none; }
@@ -89,47 +88,73 @@ a {
         width: 100%;
         display: block; }
 
-.two-cool-list {
-  margin: 0 2px 7px 10px; }
-  .two-cool-list > h2 {
+.two-cool-list,
+.hot-music-list {
+  margin: 0 2px 7px 10px;
+  height: 100%; }
+  .two-cool-list > h2,
+  .hot-music-list > h2 {
     font-size: 16px;
     color: #000;
     margin-bottom: 11px;
     font-weight: normal; }
-  .two-cool-list .play-radio {
+  .two-cool-list .play-radio,
+  .two-cool-list .play-song,
+  .hot-music-list .play-radio,
+  .hot-music-list .play-song {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     width: 100%;
     padding-right: -10px; }
-    .two-cool-list .play-radio .radio-item {
+    .two-cool-list .play-radio .radio-item,
+    .two-cool-list .play-song .radio-item,
+    .hot-music-list .play-radio .radio-item,
+    .hot-music-list .play-song .radio-item {
       flex: 1;
       margin-right: 8px;
-      flex-basis: 40%;
+      flex-basis: 45%;
       display: block;
-      background: #fff; }
-      .two-cool-list .play-radio .radio-item .radio-link {
+      background: #fff;
+      min-width: 145px;
+      margin-bottom: 10px; }
+      .two-cool-list .play-radio .radio-item .radio-link,
+      .two-cool-list .play-song .radio-item .radio-link,
+      .hot-music-list .play-radio .radio-item .radio-link,
+      .hot-music-list .play-song .radio-item .radio-link {
         width: 100%;
         display: block;
         background: #fff;
         text-decoration: none;
         position: relative; }
-        .two-cool-list .play-radio .radio-item .radio-link .radio-img {
+        .two-cool-list .play-radio .radio-item .radio-link .radio-img,
+        .two-cool-list .play-song .radio-item .radio-link .radio-img,
+        .hot-music-list .play-radio .radio-item .radio-link .radio-img,
+        .hot-music-list .play-song .radio-item .radio-link .radio-img {
           display: block;
           width: 100%;
           min-height: 145px;
           margin-bottom: 5px; }
-        .two-cool-list .play-radio .radio-item .radio-link .icon {
+        .two-cool-list .play-radio .radio-item .radio-link .icon,
+        .two-cool-list .play-song .radio-item .radio-link .icon,
+        .hot-music-list .play-radio .radio-item .radio-link .icon,
+        .hot-music-list .play-song .radio-item .radio-link .icon {
           background-repeat: no-repeat;
           background-size: 24px 60px;
           background-image: url("../images/list_sprite.png"); }
-        .two-cool-list .play-radio .radio-item .radio-link .icon-play {
+        .two-cool-list .play-radio .radio-item .radio-link .icon-play,
+        .two-cool-list .play-song .radio-item .radio-link .icon-play,
+        .hot-music-list .play-radio .radio-item .radio-link .icon-play,
+        .hot-music-list .play-song .radio-item .radio-link .icon-play {
           height: 24px;
           bottom: 46px;
           right: 5px;
           width: 24px;
           position: absolute;
           background-position: 0 0; }
-        .two-cool-list .play-radio .radio-item .radio-link .radio-title {
+        .two-cool-list .play-radio .radio-item .radio-link .radio-title,
+        .two-cool-list .play-song .radio-item .radio-link .radio-title,
+        .hot-music-list .play-radio .radio-item .radio-link .radio-title,
+        .hot-music-list .play-song .radio-item .radio-link .radio-title {
           font-size: 14px;
           font-weight: normal;
           height: 36px;
@@ -138,24 +163,23 @@ a {
           display: block;
           width: 100%;
           padding: 0 7px 5px 7px; }
+          .two-cool-list .play-radio .radio-item .radio-link .radio-title > h3,
+          .two-cool-list .play-song .radio-item .radio-link .radio-title > h3,
+          .hot-music-list .play-radio .radio-item .radio-link .radio-title > h3,
+          .hot-music-list .play-song .radio-item .radio-link .radio-title > h3 {
+            font-size: 14px;
+            font-weight: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap; }
 
-.hot-music-list {
-  margin: 2px 10px 7px 10px;
-  height: 75px; }
-  .hot-music-list > h2 {
-    font-size: 16px;
-    color: #000;
-    margin-bottom: 11px;
-    font-weight: normal;
-    display: block; }
-  .hot-music-list > p {
-    text-align: center;
-    height: 40px;
-    line-height: 40px; }
-    .hot-music-list > p > a {
-      color: rgba(0, 0, 0, 0.6);
-      text-decoration: none;
-      font-size: 14px; }
+.hot-music-list > .findmore {
+  text-align: center; }
+  .hot-music-list > .findmore > a {
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6); }
 
 .footer {
   padding: 15px 0 25px;
@@ -175,3 +199,79 @@ a {
     font-size: 10px;
     text-align: center;
     color: rgba(0, 0, 0, 0.5); }
+
+.rank-list {
+  margin: 10px; }
+  .rank-list .topic_item {
+    margin-bottom: 10px; }
+    .rank-list .topic_item .topic_main {
+      display: flex;
+      background: #fff;
+      height: 100px;
+      width: 100%; }
+      .rank-list .topic_item .topic_main .topic_media {
+        position: relative;
+        display: flex; }
+        .rank-list .topic_item .topic_main .topic_media > img {
+          height: 100px; }
+        .rank-list .topic_item .topic_main .topic_media .listen_count {
+          flex: 1;
+          z-index: 10;
+          color: #fff;
+          font-size: 9px;
+          position: absolute;
+          left: 5px;
+          bottom: 7px;
+          opacity: .6;
+          line-height: 12px; }
+          .rank-list .topic_item .topic_main .topic_media .listen_count > .icon_listen {
+            display: block;
+            float: left;
+            z-index: 10;
+            width: 10px;
+            height: 10px;
+            background-image: url(../images/list_sprite.png);
+            background-position: 0 -50px;
+            background-size: 24px 60px;
+            background-repeat: no-repeat;
+            margin-right: 3px;
+            line-height: 12px; }
+      .rank-list .topic_item .topic_main .topic_info {
+        display: block;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        position: relative; }
+        .rank-list .topic_item .topic_main .topic_info .topic_cont {
+          margin: 0 10px 0 15px;
+          width: 100%;
+          display: block; }
+          .rank-list .topic_item .topic_main .topic_info .topic_cont .topic_tit {
+            margin-bottom: 5px;
+            font-size: 16px;
+            font-weight: normal;
+            color: #000;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis; }
+          .rank-list .topic_item .topic_main .topic_info .topic_cont > p {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%; }
+          .rank-list .topic_item .topic_main .topic_info .topic_cont .text_name {
+            color: #000;
+            margin-left: 8px;
+            margin-right: 5px; }
+        .rank-list .topic_item .topic_main .topic_info .topic_arrow {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          margin-top: -4px;
+          width: 6px;
+          height: 6px;
+          border-right: 1px solid #b2b2b2;
+          border-bottom: 1px solid #b2b2b2;
+          transform: rotate(-45deg); }

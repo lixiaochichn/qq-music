@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-
+    
+    //轮播class
     class Slider {
         constructor(options = {}) {
             this.$el = options.$el
@@ -45,15 +46,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     };
 
-
+    //GET json
+    // fetch('https://qq-music-api.now.sh/')
     fetch('/json/rec.json')
         .then(res => res.json())
         .then(renderjson)
 
+
+
     function renderjson(json) {
         renderSlider(json.data.slider)
         renderRadios(json.data.radioList)
-        // renderPlaylist(json.data.songList)
+        renderPlaylist(json.data.songList)
         // lazyload()
     }
 
@@ -66,6 +70,21 @@ document.addEventListener('DOMContentLoaded', function () {
         <h3 class="radio-title">${radioList.Ftitle}</h3>
         </a></li>
         `).join('')
+    }
+
+    function renderPlaylist(songLists){
+        $playsong = document.querySelector('.play-song');
+        $playsong.innerHTML = songLists.map(songList => `
+        <li class="radio-item"><a class="radio-link" href="#">
+        <img class="radio-img" src="${songList.picUrl}">
+        <span class="icon icon-play"></span>
+        <div class="radio-title">
+        <h3>${songList.songListDesc}</h3>
+        <h3>${songList.songListAuthor}</h3>
+        </div>
+        </a></li>
+        `).join()
+
     }
 
 
@@ -85,29 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    // let slider = new Slider({
-    //     $el: document.querySelector('#qq-slider'),
-    //     sliders: [{
-    //             url: "#",
-    //             img: "images/joey.jpg"
-    //         },
-    //         {
-    //             url: "#",
-    //             img: "images/ljj.jpg"
-    //         },
-    //         {
-    //             url: "#",
-    //             img: "images/xgs.jpg"
-    //         },
-    //         {
-    //             url: "#",
-    //             img: "images/xiha.jpg"
-    //         },
-    //         {
-    //             url: "#",
-    //             img: "images/xl.jpg"
-    //         }
-    //     ]
-    // });
+
 
 });

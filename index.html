@@ -17,12 +17,12 @@
         <a href="#" class="download">下载APP</a>
     </div>
     <div class="nav-list">
-        <div class="nav-item rec active " data-role="nav" data-view=".rec-view">推荐</div>
-        <div class="nav-item rank" data-role="nav" data-view=".rank-view">排行榜</div>
+        <div class="nav-item rec" data-role="nav" data-view=".rec-view">推荐</div>
+        <div class="nav-item rank active" data-role="nav" data-view=".rank-view">排行榜</div>
         <div class="nav-item seek" data-role="nav" data-view=".seek-view">搜索</div>
     </div>
     <div class="views">
-        <div class="rec-view">
+        <div class="rec-view hide">
             <div class="qq-slider" id="qq-slider"></div>
 
             <div class="two-cool-list">
@@ -32,8 +32,10 @@
 
             <div class="hot-music-list">
                 <h2>热门歌单</h2>
-                <ul class="play-radio"></ul>
-                <p><a href="#">去客户端发现更多好音乐 ></a></p>
+                <ul class="play-song"></ul>
+
+
+                <p class="findmore"><a href="#">去客户端发现更多好音乐 ></a></p>
             </div>
             <div class="footer">
                 <a href="#">查看电脑版网页</a>
@@ -43,12 +45,34 @@
 
             </div>
         </div>
-        <div class="rank-view hide">排行榜</div>
+        <div class="rank-view">
+            <ul class="rank-list">
+                <li class="topic_item">
+                    <div class="topic_main">
+                        <a href="#" class="topic_media">
+                            <img src="http://y.gtimg.cn/music/common/upload/iphone_order_channel/toplist_4_300_203705594.jpg">
+                            <span class="listen_count"><i class="icon icon_listen"></i>1920.0万</span>
+                        </a>
+                        <div class="topic_info">
+                            <div class="topic_cont">
+                                <h3 class="topic_tit">巅峰榜·流行指数巅峰榜·流行指数巅峰榜·流行指数巅峰榜·流行指数</h3>
+                                <p>1<span class="text_name">借 (Live)</span>- 毛不易</p>
+                                <p>2<span class="text_name">苦行僧 (Live)</span>- GAI</p>
+                                <p>3<span class="text_name">H.M.E (Live)</span>- 红花会PG ONE</p>
+                            </div>
+                            <i class="topic_arrow"></i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
         <div class="seek-view hide">搜索</div>
     </div>
     <script src="scripts/app.js"></script>
     <script src="scripts/hunt.js"></script>
     <script src="scripts/rec.js"></script>
+    <script src="scripts/rank.js"></script>
 </body>
 
 </html>

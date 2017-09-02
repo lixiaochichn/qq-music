@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// 标题栏-3栏
+// 标题栏-分3栏
     document.addEventListener("click", function (event) {
         let target = event.target;
         if (target.dataset.role !== "nav") return;
