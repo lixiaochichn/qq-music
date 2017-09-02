@@ -6,7 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch('/json/rank.json')
     .then(res => res.json())
     .then(json => json.data.topList)
-    .then(renderRanklist)
+    .then(rendersec)
+
+    function rendersec(Ranklists) {
+        renderRanklist(Ranklists);
+        lazyload();
+    }
 
     function renderRanklist(Ranklists){
         $ranklist = document.querySelector('.rank-list');

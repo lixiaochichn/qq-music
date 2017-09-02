@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         renderSlider(json.data.slider)
         renderRadios(json.data.radioList)
         renderPlaylist(json.data.songList)
-        // lazyload()
+        lazyload()
     }
 
     function renderRadios(radioLists) {
