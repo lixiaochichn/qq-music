@@ -1,0 +1,192 @@
+.seek-view {
+    //background: white;
+    .mod_search_bar {
+        padding: 10px;
+        height: 56px;
+        display: flex;
+        background: #f4f4f4;
+        .inputarea {
+            height: 36px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            border-radius: 3px;
+            position: relative;
+            .icon-search {
+                background-image: url(../images/icon-search.png);
+                width: 18px;
+                height: 18px;
+                z-index: 99;
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin: 0 10px;
+            }
+            >input {
+                border: 0;
+                height: 20px;
+                font-size: 14px;
+                color: rgba(0, 0, 0, .3);
+                width: 100%;
+            }
+            .icon-del {
+                display: inline; // display: none;
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                background: #b1b1b1;
+                top: 9px;
+                right: 12px;
+                border-radius: 99px;
+                text-indent: 999px;
+            }
+            .icon-del:before {
+                width: 10px;
+                height: 2px;
+                margin-top: -1px;
+                margin-left: -5px;
+            }
+            .icon-del:before,
+            :after {
+                content: "";
+                display: block;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                border-radius: 8px;
+                background: #fff;
+                -webkit-transform: rotate(45deg);
+            }
+            .icon-del:after {
+                width: 2px;
+                height: 10px;
+                margin-left: -1px;
+                margin-top: -5px;
+            }
+        }
+    }
+    .cleararea {
+        display: block;
+        padding: 0 10px;
+        height: 36px;
+        line-height: 36px;
+        color: #555;
+        font-size: 14px;
+        white-space: nowrap;
+        /*处理元素中的空白,连续的空白符会被合并。但文本内的换行无效。*/
+    }
+}
+
+.hot-search {
+    background: #fff;
+    padding: 15px 15px 10px 15px;
+    >h3 {
+        font-size: 14px; // font-weight: normal;
+        color: rgba(0, 0, 0, .6);
+        margin-bottom: 8px;
+    }
+    .hot-search-tips {
+        display: flex;
+        flex-wrap: wrap;
+        .hot-tip {
+            display: block;
+            padding: 0 10px;
+            margin: 0 14px 10px 0;
+            border-radius: 15px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid rgba(0, 0, 0, .6);
+            color: #000;
+            border-color: #000;
+            text-align: center;
+            font-size: 14px;
+        }
+         :nth-child(1) {
+            color: #fc4524;
+            border-color: #fc4524;
+        }
+    }
+}
+
+.history-lists {
+    background: #FFF;
+    .his-list {
+        border-top: 1px solid #ededed;
+        color: #555;
+        height: 44px;
+        line-height: 44PX;
+        display: flex;
+        align-items: center;
+        .icon-history {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-image: url(../images/history.png);
+            background-size: cover;
+            margin: 0 15px;
+            border: none;
+        }
+        .title-history {
+            font-size: 14px;
+            color: #000;
+            display: block; // width: 100%;
+            flex: 1;
+        }
+        .icon-close {
+            display: block;
+            width: 20px;
+            height: 20px;
+            margin: 0 15px;
+            position: relative;
+        }
+    }
+    .clear-history {
+        height: 44px;
+        text-align: center;
+        >a {
+            color: #47c88a;
+            line-height: 44px;
+            font-size: 12px;
+        }
+    }
+    .icon-close:before {
+        width: 17px;
+        height: 1px;
+        margin-top: 0px;
+        margin-left: -8px;
+    }
+    .icon-close:before,
+    :after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, .6);
+        -webkit-transform: rotate(45deg);
+    }
+    .icon-close:after {
+        width: 1px;
+        height: 17px;
+        margin-left: 0px;
+        margin-top: -8px;
+    }
+}
+
+
+.seek-view {
+    >.hide {
+        display: none;
+    }
+    >.mod_search_bar {
+        >.hide {
+            display: none;
+        }
+        >.inputarea {
+            >.hide {
+                display: none;
+            }
+        }
+    }
+}

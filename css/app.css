@@ -26,6 +26,7 @@
 .nav-list {
   display: flex;
   align-items: center;
+  background: #fff;
   height: 40px; }
   .nav-list > .nav-item {
     color: rgba(0, 0, 0, 0.6);
@@ -288,3 +289,162 @@ a {
             border-right: 1px solid #b2b2b2;
             border-bottom: 1px solid #b2b2b2;
             transform: rotate(-45deg); }
+
+.seek-view .mod_search_bar {
+  padding: 10px;
+  height: 56px;
+  display: flex;
+  background: #f4f4f4; }
+  .seek-view .mod_search_bar .inputarea {
+    height: 36px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 3px;
+    position: relative; }
+    .seek-view .mod_search_bar .inputarea .icon-search {
+      background-image: url(../images/icon-search.png);
+      width: 18px;
+      height: 18px;
+      z-index: 99;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 0 10px; }
+    .seek-view .mod_search_bar .inputarea > input {
+      border: 0;
+      height: 20px;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.3);
+      width: 100%; }
+    .seek-view .mod_search_bar .inputarea .icon-del {
+      display: inline;
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: #b1b1b1;
+      top: 9px;
+      right: 12px;
+      border-radius: 99px;
+      text-indent: 999px; }
+    .seek-view .mod_search_bar .inputarea .icon-del:before {
+      width: 10px;
+      height: 2px;
+      margin-top: -1px;
+      margin-left: -5px; }
+    .seek-view .mod_search_bar .inputarea .icon-del:before,
+    .seek-view .mod_search_bar .inputarea :after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 8px;
+      background: #fff;
+      -webkit-transform: rotate(45deg); }
+    .seek-view .mod_search_bar .inputarea .icon-del:after {
+      width: 2px;
+      height: 10px;
+      margin-left: -1px;
+      margin-top: -5px; }
+
+.seek-view .cleararea {
+  display: block;
+  padding: 0 10px;
+  height: 36px;
+  line-height: 36px;
+  color: #555;
+  font-size: 14px;
+  white-space: nowrap;
+  /*处理元素中的空白,连续的空白符会被合并。但文本内的换行无效。*/ }
+
+.hot-search {
+  background: #fff;
+  padding: 15px 15px 10px 15px; }
+  .hot-search > h3 {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px; }
+  .hot-search .hot-search-tips {
+    display: flex;
+    flex-wrap: wrap; }
+    .hot-search .hot-search-tips .hot-tip {
+      display: block;
+      padding: 0 10px;
+      margin: 0 14px 10px 0;
+      border-radius: 15px;
+      height: 30px;
+      line-height: 30px;
+      border: 1px solid rgba(0, 0, 0, 0.6);
+      color: #000;
+      border-color: #000;
+      text-align: center;
+      font-size: 14px; }
+    .hot-search .hot-search-tips :nth-child(1) {
+      color: #fc4524;
+      border-color: #fc4524; }
+
+.history-lists {
+  background: #FFF; }
+  .history-lists .his-list {
+    border-top: 1px solid #ededed;
+    color: #555;
+    height: 44px;
+    line-height: 44PX;
+    display: flex;
+    align-items: center; }
+    .history-lists .his-list .icon-history {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-image: url(../images/history.png);
+      background-size: cover;
+      margin: 0 15px;
+      border: none; }
+    .history-lists .his-list .title-history {
+      font-size: 14px;
+      color: #000;
+      display: block;
+      flex: 1; }
+    .history-lists .his-list .icon-close {
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 0 15px;
+      position: relative; }
+  .history-lists .clear-history {
+    height: 44px;
+    text-align: center; }
+    .history-lists .clear-history > a {
+      color: #47c88a;
+      line-height: 44px;
+      font-size: 12px; }
+  .history-lists .icon-close:before {
+    width: 17px;
+    height: 1px;
+    margin-top: 0px;
+    margin-left: -8px; }
+  .history-lists .icon-close:before,
+  .history-lists :after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    -webkit-transform: rotate(45deg); }
+  .history-lists .icon-close:after {
+    width: 1px;
+    height: 17px;
+    margin-left: 0px;
+    margin-top: -8px; }
+
+.seek-view > .hide {
+  display: none; }
+
+.seek-view > .mod_search_bar > .hide {
+  display: none; }
+
+.seek-view > .mod_search_bar > .inputarea > .hide {
+  display: none; }
