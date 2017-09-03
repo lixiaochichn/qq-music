@@ -258,7 +258,7 @@ a {
             display: block;
             width: 100%;
             flex: 1;
-            max-width: calc(100% - 30px); }
+            max-width: calc(100% - 35px); }
             .rank-view .rank-list .topic_item .topic_main .topic_info .topic_cont .topic_tit {
               display: block;
               margin-bottom: 5px;
