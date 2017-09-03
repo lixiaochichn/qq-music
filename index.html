@@ -14,15 +14,15 @@
 
     <div class="header">
         <a href="#"><img src="images/logo.png" alt=""></a>
-        <a href="#" class="download">下载APP</a>
+        <a href="#" class="download">lixiaochi</a>
     </div>
     <div class="nav-list">
-        <div class="nav-item rec" data-role="nav" data-view=".rec-view">推荐</div>
+        <div class="nav-item rec active" data-role="nav" data-view=".rec-view">推荐</div>
         <div class="nav-item rank" data-role="nav" data-view=".rank-view">排行榜</div>
-        <div class="nav-item seek active" data-role="nav" data-view=".seek-view">搜索</div>
+        <div class="nav-item seek" data-role="nav" data-view=".seek-view">搜索</div>
     </div>
     <div class="views">
-        <div class="rec-view hide">
+        <div class="rec-view">
             <div class="qq-slider" id="qq-slider"></div>
 
             <div class="two-cool-list">
@@ -33,8 +33,6 @@
             <div class="hot-music-list">
                 <h2>热门歌单</h2>
                 <ul class="play-song"></ul>
-
-
                 <p class="findmore"><a href="#">去客户端发现更多好音乐 ></a></p>
             </div>
             <div class="footer">
@@ -42,14 +40,16 @@
                 <img src="images/logo_footer.png" alt="">
                 <p>Copyright © 1998 - 2017 Tencent. All Rights Reserved.</p>
                 <p>联系电话：0755-86013388 QQ群：55209235</p>
-
             </div>
         </div>
+
+
         <div class="rank-view hide">
             <ul class="rank-list"></ul>
         </div>
 
-        <div class="seek-view">
+
+        <div class="seek-view hide">
             <div class="mod_search_bar">
                 <div class="inputarea">
                     <span class="icon icon-search"></span>

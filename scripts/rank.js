@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // console.log('aaa');
 
 
-    fetch('/json/rank.json')
+    // fetch('/json/rank.json')
+    fetch('https://qq-music-api.now.sh/top')
     .then(res => res.json())
     .then(json => json.data.topList)
     .then(rendersec)

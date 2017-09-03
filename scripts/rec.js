@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.$wrap.style.transitionDuration = `${this.duration}ms`
             this.$wrap.style.width = `${this.sliders.length * 100 +100}%`
             this.$wrap.innerHTML = this.sliders.map(slider =>
-                `<div class="qq-slider-item"><a href=${slider.url}><img src="${slider.img}"></a></div>`
+                `<div class="qq-slider-item"><a href=#><img src="${slider.img}"></a></div>`
             ).join('') + `<div class="qq-slider-item"><a href=${this.sliders[0].url}><img src="${this.sliders[0].img}"></a></div>`
         }
 

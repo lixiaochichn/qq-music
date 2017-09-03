@@ -8,20 +8,27 @@ document.addEventListener('DOMContentLoaded', function () {
     $historylists = document.querySelector('.history-lists'); //搜索历史
     $icondel = document.querySelector('.icon-del'); //圆形叉号
 
-    fetch('/json/history.json')
-    .then(res => res.json)
-    .then(renderthird)
+    // fetch('/json/history.json')
+    fetch('https://qq-music-api.now.sh/hotkey')
+        .then(res => res.json())
+        .then(json => json.data)
+        .then(renderthird)
 
-    function renderthird(json){
-        renderseek(json.hotkey);
-        lazyload();
+
+    function renderthird(data) {
+        renderseek(data);
+        console.log(data);
+
+        // lazyload();
     };
 
-    function renderseek(hotkeys){
+    function renderseek(data) {
         $hotsearchtips = document.querySelector('.hot-search-tips');
-        $hotsearchtips.innerHTML = hotkeys.map(hotkey => `
-        <a href="#" class="hot-tip">中国新歌声第二季</a>        
-        `).join();
+        // console.log(data);
+        $hotsearchtips.innerHTML = `<a href="#" class="hot-tip">${data.special_key}</a>`;
+        $hotsearchtips.innerHTML += data.hotkey.map(hotkeyitem => `
+        <a href="#" class="hot-tip">${hotkeyitem.k}</a>        
+        `).join('');
     };
 
     document.addEventListener("click", function (event) {
