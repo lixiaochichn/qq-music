@@ -55,12 +55,14 @@
                     align-items: center;
                     width: 100%;
                     position: relative;
+                    max-width: calc(100% - 100px);
                     .topic_cont {
                         margin: 0 10px 0 15px;
                         width: 100%;
                         display: block;
                         width: 100%;
                         flex: 1;
+                        max-width: calc(100% - 30px);
                         .topic_tit {
                             display: block; // width: 80%;
                             // width: inherit;

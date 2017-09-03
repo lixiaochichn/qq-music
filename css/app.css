@@ -27,7 +27,8 @@
   display: flex;
   align-items: center;
   background: #fff;
-  height: 40px; }
+  height: 40px;
+  cursor: pointer; }
   .nav-list > .nav-item {
     color: rgba(0, 0, 0, 0.6);
     flex: 1;
@@ -249,13 +250,15 @@ a {
           display: flex;
           align-items: center;
           width: 100%;
-          position: relative; }
+          position: relative;
+          max-width: calc(100% - 100px); }
           .rank-view .rank-list .topic_item .topic_main .topic_info .topic_cont {
             margin: 0 10px 0 15px;
             width: 100%;
             display: block;
             width: 100%;
-            flex: 1; }
+            flex: 1;
+            max-width: calc(100% - 30px); }
             .rank-view .rank-list .topic_item .topic_main .topic_info .topic_cont .topic_tit {
               display: block;
               margin-bottom: 5px;
