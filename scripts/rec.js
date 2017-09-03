@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     //GET json
-    // fetch('https://qq-music-api.now.sh/')
-    fetch('/json/rec.json')
+    // fetch('/json/rec.json')
+    fetch('https://qq-music-api.now.sh/')    
         .then(res => res.json())
         .then(renderjson)
 
