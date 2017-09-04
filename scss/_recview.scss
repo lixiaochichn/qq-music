@@ -63,6 +63,9 @@
                             text-overflow: ellipsis;
                             white-space: nowrap;
                         }
+                        :nth-child(2) {
+                            font-size: 12px;
+                        }
                     }
                 }
             }

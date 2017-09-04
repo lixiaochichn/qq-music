@@ -47,7 +47,7 @@
                 margin-left: -5px;
             }
             .icon-del:before,
-            :after {
+             :after {
                 content: "";
                 display: block;
                 position: absolute;
@@ -156,7 +156,7 @@
         margin-left: -8px;
     }
     .icon-close:before,
-    :after {
+     :after {
         content: "";
         display: block;
         position: absolute;
@@ -174,7 +174,6 @@
     }
 }
 
-
 .seek-view {
     >.hide {
         display: none;
@@ -187,6 +186,80 @@
             >.hide {
                 display: none;
             }
+        }
+    }
+}
+
+.search-area {
+    .search-result-list {
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        .search-result {
+            // background-color: black;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            height: 55px;
+            .music-icon {
+                display: block;
+                height: 20px;
+                width: 22px;
+                background-repeat: no-repeat;
+                background-image: url(../images/icon-music.png);
+                background-position: 0 0;
+                background-size: 22px 30px;
+                position: absolute;
+                top: 18px;
+                left: 18px;
+                width: 22px;
+                height: 20px;
+            }
+            .result-title {
+                display: block;
+                margin-top: 10px;
+                margin-bottom: 2px;
+                font-size: 16px;
+                line-height: 18px;
+                font-weight: normal;
+                color: #000;
+                margin-left: 55px;
+            }
+            .result-singer {
+                display: block;
+                color: #808080;
+                margin-left: 55px;
+            }
+            .result-title,
+            .result-singer {
+                overflow: hidden;
+                /*当内容溢出其块级容器时,内容会被修剪,并且其余内容不可见*/
+                text-overflow: ellipsis;
+                /*显示一个省略号*/
+                white-space: nowrap;
+                /*处理元素中的空白,连续的空白符会被合并。但文本内的换行无效。*/
+            }
+        }
+    }
+    .search-footer {
+        display: flex;
+        justify-content: center;
+        .icon-loading {
+            width: 12px;
+            height: 12px;
+            background-image: url(../images/icon_loading.png);
+            background-size: cover;
+            background-position: 0 0;
+            z-index: 999;
+            margin-top: 12px;
+            margin-right: 5px;
+            display: block;
+        }
+        >p {
+            line-height: 40px;
+            color: #808080;
+            font-size: 12px;
+            text-align: center;
         }
     }
 }

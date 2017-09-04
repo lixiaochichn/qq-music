@@ -174,6 +174,11 @@ a {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap; }
+          .two-cool-list .play-radio .radio-item .radio-link .radio-title :nth-child(2),
+          .two-cool-list .play-song .radio-item .radio-link .radio-title :nth-child(2),
+          .hot-music-list .play-radio .radio-item .radio-link .radio-title :nth-child(2),
+          .hot-music-list .play-song .radio-item .radio-link .radio-title :nth-child(2) {
+            font-size: 12px; }
 
 .hot-music-list > .findmore {
   text-align: center; }
@@ -451,3 +456,66 @@ a {
 
 .seek-view > .mod_search_bar > .inputarea > .hide {
   display: none; }
+
+.search-area .search-result-list {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column; }
+  .search-area .search-result-list .search-result {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 55px; }
+    .search-area .search-result-list .search-result .music-icon {
+      display: block;
+      height: 20px;
+      width: 22px;
+      background-repeat: no-repeat;
+      background-image: url(../images/icon-music.png);
+      background-position: 0 0;
+      background-size: 22px 30px;
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      width: 22px;
+      height: 20px; }
+    .search-area .search-result-list .search-result .result-title {
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 2px;
+      font-size: 16px;
+      line-height: 18px;
+      font-weight: normal;
+      color: #000;
+      margin-left: 55px; }
+    .search-area .search-result-list .search-result .result-singer {
+      display: block;
+      color: #808080;
+      margin-left: 55px; }
+    .search-area .search-result-list .search-result .result-title,
+    .search-area .search-result-list .search-result .result-singer {
+      overflow: hidden;
+      /*当内容溢出其块级容器时,内容会被修剪,并且其余内容不可见*/
+      text-overflow: ellipsis;
+      /*显示一个省略号*/
+      white-space: nowrap;
+      /*处理元素中的空白,连续的空白符会被合并。但文本内的换行无效。*/ }
+
+.search-area .search-footer {
+  display: flex;
+  justify-content: center; }
+  .search-area .search-footer .icon-loading {
+    width: 12px;
+    height: 12px;
+    background-image: url(../images/icon_loading.png);
+    background-size: cover;
+    background-position: 0 0;
+    z-index: 999;
+    margin-top: 12px;
+    margin-right: 5px;
+    display: block; }
+  .search-area .search-footer > p {
+    line-height: 40px;
+    color: #808080;
+    font-size: 12px;
+    text-align: center; }
