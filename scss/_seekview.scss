@@ -188,6 +188,11 @@
             }
         }
     }
+    .search-area {
+        >.hide {
+            display: none;
+        }
+    }
 }
 
 .search-area {
@@ -241,9 +246,10 @@
             }
         }
     }
-    .search-footer {
+    .search-footer,.search-footer-finish{
         display: flex;
         justify-content: center;
+        background: #fff;
         .icon-loading {
             width: 12px;
             height: 12px;
@@ -254,6 +260,8 @@
             margin-top: 12px;
             margin-right: 5px;
             display: block;
+            transition: .5s;
+            animation: 1s linear infinite loading;
         }
         >p {
             line-height: 40px;
@@ -261,5 +269,10 @@
             font-size: 12px;
             text-align: center;
         }
+    }
+
+    @keyframes loading {
+        from{transform: rotateZ(0deg)}
+        to{transform: rotateZ(360deg)}
     }
 }

@@ -8,11 +8,15 @@ document.addEventListener('DOMContentLoaded', function () {
     $historylists = document.querySelector('.history-lists'); //搜索历史
     $icondel = document.querySelector('.icon-del'); //圆形叉号
     $searchresultlist = document.querySelector('.search-result-list'); //searchresultlist
-    let keyword;
+    $searchfooter = document.querySelector('.search-footer'); //加载文字
+    $iconloading = document.querySelector('.icon-loading'); //加载动画
+    $searchfooterfinish = document.querySelector('.search-footer-finish'); //加载完成
+    let keyword = '';
     let page;
+    let fetchresult = 1;
 
     // fetch('/json/history.json')
-        fetch('https://qq-music-api.now.sh/hotkey')
+    fetch('https://qq-music-api.now.sh/hotkey')
         .then(res => res.json())
         .then(json => json.data)
         .then(renderthird)
@@ -36,22 +40,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.addEventListener("click", function (event) {
         let target = event.target;
-        if (target === $inputseek) {
-            $historylists.classList.remove('hide');
-            $cleararea.classList.remove('hide');
-            $hotsearch.classList.add('hide');
-        };
+        if (target === $inputseek && $inputseek.value.length === 0) {
+            $historylists.classList.remove('hide'); //搜索历史-显示
+            $cleararea.classList.remove('hide'); //取消按钮-显示
+            $hotsearch.classList.add('hide'); //热门搜索-隐藏
+        }; //input
+
         if (target === $cleararea) {
             $historylists.classList.add('hide');
             $cleararea.classList.add('hide');
             $hotsearch.classList.remove('hide');
             $inputseek.value = '';
             $icondel.classList.add('hide');
-        };
+            $searchresultlist.innerHTML = '';
+            $searchfooter.classList.add('hide'); //加载动画-隐藏
+            $searchfooterfinish.classList.add('hide'); //隐藏已加载全部
+        }; //点击取消
+
         if (target === $icondel) {
             $inputseek.value = '';
             $icondel.classList.add('hide');
-        }
+            $historylists.classList.remove('hide'); //搜索历史-显示
+            $searchfooter.classList.add('hide'); //加载动画-隐藏            
+            $searchresultlist.innerHTML = '';
+            $searchfooterfinish.classList.add('hide'); //隐藏已加载全部            
+        } //圆形叉号
     });
     $inputseek.addEventListener("keyup", function () {
         let which = event.which;
@@ -63,18 +76,44 @@ document.addEventListener('DOMContentLoaded', function () {
         if ($inputseek.value.length > 0 && which === 13) {
             console.log("which");
             $historylists.classList.add('hide');
+            $searchresultlist.innerHTML = '';
+            $searchfooterfinish.classList.add('hide'); //隐藏已加载全部            
+            $searchfooter.classList.remove('hide'); //出现加载动画
             keyword = $inputseek.value;
             page = 1;
-            search(keyword);
+            fetchresult = 1;
+            if (fetchresult === 1) {
+                fetchresult = 0;
+                console.log('enter' + fetchresult + 'page' + page);
+                search(keyword);
+            };
         };
     });
 
     function search(keywordvalue) {
-        fetch(`https://qq-music-api.now.sh/search?keyword=${keywordvalue}?page=${page}`)
-            .then(res => res.json())
-            .then(json => json.data)
-            .then(renderforth)
+        if (keywordvalue !== '') {
+            fetch(`https://qq-music-api.now.sh/search?keyword=${keywordvalue}&page=${page}`)
+                .then(res => {
+                    fetchresult = 1;
+                    console.log('finish' + fetchresult + 'page' + page);
+                    page++;
+                    return res.json();
+                })
+                .then(endresults)
+                .then(json => json.data)
+                .then(renderforth)
+        }
     }
+
+    function endresults(json) {
+        if (json.message === 'no results') {
+            $searchfooter.classList.add('hide'); //隐藏加载动画
+            $searchfooterfinish.classList.remove('hide'); //显示已加载全部
+            fetchresult = 0;
+            console.log('noresult')
+        }
+        return json;
+    };
 
     function renderforth(data) {
         rendersearch(data.song.list);
@@ -88,13 +127,17 @@ document.addEventListener('DOMContentLoaded', function () {
         <p class="result-singer">${list.singer[0].name}</p>
         </li>
         `).join('');
-        page++;
+        // page++;
     };
 
     window.addEventListener('scroll', function () {
-        console.log(pageYOffset);
-        if (pageYOffset + document.documentElement.clientHeight > document.body.scrollHeight - 50) {
-            search(keyword);
+        // console.log(pageYOffset);
+        if (pageYOffset + document.documentElement.clientHeight > document.body.scrollHeight - 50 && keyword !== '') {
+            if (fetchresult === 1) {
+                fetchresult = 0;
+                console.log('scroll' + fetchresult + 'page' + page);
+                search(keyword);
+            };
         }
     });
 

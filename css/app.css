@@ -457,6 +457,9 @@ a {
 .seek-view > .mod_search_bar > .inputarea > .hide {
   display: none; }
 
+.seek-view .search-area > .hide {
+  display: none; }
+
 .search-area .search-result-list {
   background-color: #fff;
   display: flex;
@@ -501,10 +504,11 @@ a {
       white-space: nowrap;
       /*处理元素中的空白,连续的空白符会被合并。但文本内的换行无效。*/ }
 
-.search-area .search-footer {
+.search-area .search-footer, .search-area .search-footer-finish {
   display: flex;
-  justify-content: center; }
-  .search-area .search-footer .icon-loading {
+  justify-content: center;
+  background: #fff; }
+  .search-area .search-footer .icon-loading, .search-area .search-footer-finish .icon-loading {
     width: 12px;
     height: 12px;
     background-image: url(../images/icon_loading.png);
@@ -513,9 +517,17 @@ a {
     z-index: 999;
     margin-top: 12px;
     margin-right: 5px;
-    display: block; }
-  .search-area .search-footer > p {
+    display: block;
+    transition: .5s;
+    animation: 1s linear infinite loading; }
+  .search-area .search-footer > p, .search-area .search-footer-finish > p {
     line-height: 40px;
     color: #808080;
     font-size: 12px;
     text-align: center; }
+
+@keyframes loading {
+  from {
+    transform: rotateZ(0deg); }
+  to {
+    transform: rotateZ(360deg); } }
