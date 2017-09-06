@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function sethistory() {
-        historyarray.push($inputseek.value); //记录进历史
-        // console.log(historyarray);
+        historyarray.unshift($inputseek.value); //记录进历史
+        historyarray = Array.from(new Set(historyarray));
         localStorage.setItem('yqq_search_history', historyarray);
 
     };
@@ -117,7 +117,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function gethistory() {
         if(localStorage.getItem('yqq_search_history')){
             historyarray = localStorage.getItem('yqq_search_history').split(',');
-            historyarray = Array.from(new Set(historyarray));
+            // historyarray = Array.from(new Set(historyarray));
+            // localStorage.setItem('yqq_search_history', historyarray);
             $historylists.innerHTML = historyarray.map(event => `
             <li class="his-list">
             <span class="icon icon-history"></span>
