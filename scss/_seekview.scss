@@ -30,7 +30,7 @@
                 width: 100%;
             }
             .icon-del {
-                display: inline; // display: none;
+                display: block; // display: none;
                 position: absolute;
                 width: 18px;
                 height: 18px;
@@ -55,7 +55,7 @@
                 top: 50%;
                 border-radius: 8px;
                 background: #fff;
-                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
             }
             .icon-del:after {
                 width: 2px;
@@ -143,6 +143,9 @@
     .clear-history {
         height: 44px;
         text-align: center;
+        // color: #47c88a;
+        // line-height: 44px;
+        // font-size: 12px;
         >a {
             color: #47c88a;
             line-height: 44px;
@@ -164,7 +167,7 @@
         top: 50%;
         border-radius: 8px;
         background: rgba(0, 0, 0, .6);
-        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
     }
     .icon-close:after {
         width: 1px;

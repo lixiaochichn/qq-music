@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // console.log('aaa');
 
+
     $inputseek = document.querySelector('#input-seek'); //input
     $cleararea = document.querySelector('.cleararea'); //取消
     $hotsearch = document.querySelector('.hot-search'); //热门搜索
@@ -11,9 +12,14 @@ document.addEventListener('DOMContentLoaded', function () {
     $searchfooter = document.querySelector('.search-footer'); //加载文字
     $iconloading = document.querySelector('.icon-loading'); //加载动画
     $searchfooterfinish = document.querySelector('.search-footer-finish'); //加载完成
+
+    $clearhistorya = document.querySelector('.clear-history-a'); //清除全部历史按钮
+    $iconclose = document.querySelector('.icon-close'); //清除一条历史按钮
     let keyword = '';
     let page;
     let fetchresult = 1;
+    let historyarray = [];
+
 
     // fetch('/json/history.json')
     fetch('https://qq-music-api.now.sh/hotkey')
@@ -39,14 +45,15 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     document.addEventListener("click", function (event) {
+        event.preventDefault();
         let target = event.target;
+        //input
         if (target === $inputseek && $inputseek.value.length === 0) {
             $historylists.classList.remove('hide'); //搜索历史-显示
             $cleararea.classList.remove('hide'); //取消按钮-显示
             $hotsearch.classList.add('hide'); //热门搜索-隐藏
-        }; //input
-
-        if (target === $cleararea) {
+            gethistory();
+        } else if (target === $cleararea) {
             $historylists.classList.add('hide');
             $cleararea.classList.add('hide');
             $hotsearch.classList.remove('hide');
@@ -55,16 +62,25 @@ document.addEventListener('DOMContentLoaded', function () {
             $searchresultlist.innerHTML = '';
             $searchfooter.classList.add('hide'); //加载动画-隐藏
             $searchfooterfinish.classList.add('hide'); //隐藏已加载全部
-        }; //点击取消
-
-        if (target === $icondel) {
+        } //点击取消
+        else if (target === $icondel) {
             $inputseek.value = '';
             $icondel.classList.add('hide');
             $historylists.classList.remove('hide'); //搜索历史-显示
             $searchfooter.classList.add('hide'); //加载动画-隐藏            
             $searchresultlist.innerHTML = '';
-            $searchfooterfinish.classList.add('hide'); //隐藏已加载全部            
+            $searchfooterfinish.classList.add('hide'); //隐藏已加载全部
+            gethistory();
         } //圆形叉号
+        else if (target === $iconclose) {
+            console.log('clear');
+        }
+        else if (target === $clearhistorya) {
+            console.log('clearall');
+            localStorage.setItem('yqq_search_history',[]);
+            // $historylists.classList.add('hide'); //搜索历史-隐藏
+            gethistory();
+        }; //清除所有历史记录
     });
     $inputseek.addEventListener("keyup", function () {
         let which = event.which;
@@ -79,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $searchresultlist.innerHTML = '';
             $searchfooterfinish.classList.add('hide'); //隐藏已加载全部            
             $searchfooter.classList.remove('hide'); //出现加载动画
+            sethistory(); //记录进历史
             keyword = $inputseek.value;
             page = 1;
             fetchresult = 1;
@@ -89,6 +106,34 @@ document.addEventListener('DOMContentLoaded', function () {
             };
         };
     });
+
+    function sethistory() {
+        historyarray.push($inputseek.value); //记录进历史
+        // console.log(historyarray);
+        localStorage.setItem('yqq_search_history', historyarray);
+
+    };
+
+    function gethistory() {
+        if(localStorage.getItem('yqq_search_history')){
+            historyarray = localStorage.getItem('yqq_search_history').split(',');
+            historyarray = Array.from(new Set(historyarray));
+            $historylists.innerHTML = historyarray.map(event => `
+            <li class="his-list">
+            <span class="icon icon-history"></span>
+            <span class="title-history">${event}</span>
+            <span class="icon icon-close"></span>
+            </li>
+            `).join('') + `<div class="clear-history"><a href="#" class="clear-history-a">清除搜索记录</a></div>`;
+        }else{
+            $historylists.innerHTML = '';
+            historyarray = [];
+            console.log('已全部清除');
+        };
+
+        $clearhistorya = document.querySelector('.clear-history-a'); //清除全部历史按钮
+        $iconclose = document.querySelector('.icon-close'); //清除一条历史按钮
+    };
 
     function search(keywordvalue) {
         if (keywordvalue !== '') {

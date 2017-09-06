@@ -326,7 +326,7 @@ a {
       color: rgba(0, 0, 0, 0.3);
       width: 100%; }
     .seek-view .mod_search_bar .inputarea .icon-del {
-      display: inline;
+      display: block;
       position: absolute;
       width: 18px;
       height: 18px;
@@ -349,7 +349,7 @@ a {
       top: 50%;
       border-radius: 8px;
       background: #fff;
-      -webkit-transform: rotate(45deg); }
+      transform: rotate(45deg); }
     .seek-view .mod_search_bar .inputarea .icon-del:after {
       width: 2px;
       height: 10px;
@@ -441,7 +441,7 @@ a {
     top: 50%;
     border-radius: 8px;
     background: rgba(0, 0, 0, 0.6);
-    -webkit-transform: rotate(45deg); }
+    transform: rotate(45deg); }
   .history-lists .icon-close:after {
     width: 1px;
     height: 17px;
