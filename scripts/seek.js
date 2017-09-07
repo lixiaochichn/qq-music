@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let page;
     let fetchresult = 1;
     let historyarray = [];
+    let fetchfinish = 1;
 
 
     // fetch('/json/history.json')
@@ -64,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $searchfooterfinish.classList.add('hide'); //隐藏已加载全部
         } //点击取消
         else if (target === $icondel) {
+            //圆形叉号
             $inputseek.value = '';
             $icondel.classList.add('hide');
             $historylists.classList.remove('hide'); //搜索历史-显示
@@ -71,17 +73,45 @@ document.addEventListener('DOMContentLoaded', function () {
             $searchresultlist.innerHTML = '';
             $searchfooterfinish.classList.add('hide'); //隐藏已加载全部
             gethistory();
-        } //圆形叉号
-        else if (target === $iconclose) {
-            console.log('clear');
-        }
-        else if (target === $clearhistorya) {
+        } else if (target === $clearhistorya) {
+            //清除所有历史记录
             console.log('clearall');
-            localStorage.setItem('yqq_search_history',[]);
+            localStorage.setItem('yqq_search_history', []);
             // $historylists.classList.add('hide'); //搜索历史-隐藏
             gethistory();
-        }; //清除所有历史记录
+        } else if (target.classList.contains('icon-close')) {
+            let i = historyarray.indexOf(target.parentElement.children[1].innerHTML)
+            if (i > -1) {
+                historyarray.splice(i, 1);
+                console.log(target);
+                localStorage.setItem('yqq_search_history', historyarray);
+                gethistory();
+            };
+        } else if (target.classList.contains('title-history') || target.classList.contains('icon-history')) {
+            $inputseek.value = target.parentElement.children[1].innerHTML;
+            $icondel.classList.remove('hide');
+            if ($inputseek.value.length > 0) {
+                startsearch();
+            };
+        };
     });
+
+    function startsearch() {
+        $historylists.classList.add('hide');
+        $searchresultlist.innerHTML = '';
+        $searchfooterfinish.classList.add('hide'); //隐藏已加载全部            
+        $searchfooter.classList.remove('hide'); //出现加载动画
+        sethistory(); //记录进历史
+        keyword = $inputseek.value;
+        page = 1;
+        fetchresult = 1;
+        if (fetchresult === 1) {
+            fetchresult = 0;
+            console.log('enter' + fetchresult + 'page' + page);
+            search(keyword);
+        };
+    };
+
     $inputseek.addEventListener("keyup", function () {
         let which = event.which;
         if ($inputseek.value.length > 0) {
@@ -91,19 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         if ($inputseek.value.length > 0 && which === 13) {
             console.log("which");
-            $historylists.classList.add('hide');
-            $searchresultlist.innerHTML = '';
-            $searchfooterfinish.classList.add('hide'); //隐藏已加载全部            
-            $searchfooter.classList.remove('hide'); //出现加载动画
-            sethistory(); //记录进历史
-            keyword = $inputseek.value;
-            page = 1;
-            fetchresult = 1;
-            if (fetchresult === 1) {
-                fetchresult = 0;
-                console.log('enter' + fetchresult + 'page' + page);
-                search(keyword);
-            };
+            startsearch();
         };
     });
 
@@ -115,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     function gethistory() {
-        if(localStorage.getItem('yqq_search_history')){
+        if (localStorage.getItem('yqq_search_history')) {
             historyarray = localStorage.getItem('yqq_search_history').split(',');
             // historyarray = Array.from(new Set(historyarray));
             // localStorage.setItem('yqq_search_history', historyarray);
@@ -126,21 +144,26 @@ document.addEventListener('DOMContentLoaded', function () {
             <span class="icon icon-close"></span>
             </li>
             `).join('') + `<div class="clear-history"><a href="#" class="clear-history-a">清除搜索记录</a></div>`;
-        }else{
+
+
+        } else {
             $historylists.innerHTML = '';
             historyarray = [];
             console.log('已全部清除');
         };
+
 
         $clearhistorya = document.querySelector('.clear-history-a'); //清除全部历史按钮
         $iconclose = document.querySelector('.icon-close'); //清除一条历史按钮
     };
 
     function search(keywordvalue) {
-        if (keywordvalue !== '') {
+        if (keywordvalue !== '' && fetchfinish === 1) {
+            fetchfinish = 0;
             fetch(`https://qq-music-api.now.sh/search?keyword=${keywordvalue}&page=${page}`)
                 .then(res => {
                     fetchresult = 1;
+                    fetchfinish = 1;            
                     console.log('finish' + fetchresult + 'page' + page);
                     page++;
                     return res.json();
@@ -162,17 +185,29 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     function renderforth(data) {
-        rendersearch(data.song.list);
+        rendersearch(data);
     };
 
-    function rendersearch(lists) {
-        $searchresultlist.innerHTML += lists.map(list => `
+    function rendersearch(data) {
+        $searchresultlist.innerHTML += data.song.list.map(list => `
         <li class="search-result">
         <i class="icon music-icon"></i>
         <h6 class="result-title">${list.songname}</h6>
         <p class="result-singer">${list.singer[0].name}</p>
         </li>
         `).join('');
+
+        if(data.zhida.singermid){
+            let htmlheader = `<li class="search-result">
+            <img src="https://y.gtimg.cn/music/photo_new/T001R68x68M000${data.zhida.singermid}.jpg?max_age=2592000" class="icon singer-icon">
+            <h6 class="result-title">${data.zhida.singername}</h6>
+            <p class="result-singer">单曲：${data.zhida.songnum} 专辑：${data.zhida.albumnum}</p>
+            </li>`;
+    
+            $searchresultlist.insertAdjacentHTML('afterbegin',htmlheader);
+        };
+
+
         // page++;
     };
 

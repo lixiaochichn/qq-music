@@ -469,6 +469,14 @@ a {
     flex-direction: column;
     position: relative;
     height: 55px; }
+    .search-area .search-result-list .search-result > .singer-icon {
+      display: block;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: 7.5px;
+      left: 7.5px;
+      border-radius: 50%; }
     .search-area .search-result-list .search-result .music-icon {
       display: block;
       height: 20px;
@@ -504,11 +512,13 @@ a {
       white-space: nowrap;
       /*处理元素中的空白,连续的空白符会被合并。但文本内的换行无效。*/ }
 
-.search-area .search-footer, .search-area .search-footer-finish {
+.search-area .search-footer,
+.search-area .search-footer-finish {
   display: flex;
   justify-content: center;
   background: #fff; }
-  .search-area .search-footer .icon-loading, .search-area .search-footer-finish .icon-loading {
+  .search-area .search-footer .icon-loading,
+  .search-area .search-footer-finish .icon-loading {
     width: 12px;
     height: 12px;
     background-image: url(../images/icon_loading.png);
@@ -520,7 +530,8 @@ a {
     display: block;
     transition: .5s;
     animation: 1s linear infinite loading; }
-  .search-area .search-footer > p, .search-area .search-footer-finish > p {
+  .search-area .search-footer > p,
+  .search-area .search-footer-finish > p {
     line-height: 40px;
     color: #808080;
     font-size: 12px;

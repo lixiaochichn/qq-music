@@ -142,8 +142,7 @@
     }
     .clear-history {
         height: 44px;
-        text-align: center;
-        // color: #47c88a;
+        text-align: center; // color: #47c88a;
         // line-height: 44px;
         // font-size: 12px;
         >a {
@@ -209,6 +208,15 @@
             flex-direction: column;
             position: relative;
             height: 55px;
+            >.singer-icon {
+                display: block;
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                top: 7.5px;
+                left: 7.5px;
+                border-radius: 50%;
+            }
             .music-icon {
                 display: block;
                 height: 20px;
@@ -249,7 +257,8 @@
             }
         }
     }
-    .search-footer,.search-footer-finish{
+    .search-footer,
+    .search-footer-finish {
         display: flex;
         justify-content: center;
         background: #fff;
@@ -273,9 +282,12 @@
             text-align: center;
         }
     }
-
     @keyframes loading {
-        from{transform: rotateZ(0deg)}
-        to{transform: rotateZ(360deg)}
+        from {
+            transform: rotateZ(0deg)
+        }
+        to {
+            transform: rotateZ(360deg)
+        }
     }
 }
