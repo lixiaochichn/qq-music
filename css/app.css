@@ -542,3 +542,91 @@ a {
     transform: rotateZ(0deg); }
   to {
     transform: rotateZ(360deg); } }
+
+.music-background {
+  z-index: 1;
+  background-image: url(../images/album.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-position: bottom center;
+  filter: blur(15px);
+  transform: scale(1.15); }
+
+.music-player {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  transition: .5s;
+  transform: translateY(-100%);
+  opacity: 0; }
+  .music-player.show {
+    opacity: 1;
+    transform: translateY(0); }
+  .music-player .player-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9; }
+    .music-player .player-container .player-header {
+      display: block;
+      width: 100%;
+      height: 110px;
+      background: rgba(0, 0, 0, 0.1);
+      z-index: 99; }
+      .music-player .player-container .player-header .music-album {
+        height: 110px;
+        position: relative;
+        top: 15px;
+        left: 15px; }
+        .music-player .player-container .player-header .music-album .album-cover {
+          height: 80px;
+          width: 80px; }
+        .music-player .player-container .player-header .music-album .music-name {
+          color: #fff;
+          font-size: 18px;
+          position: absolute;
+          top: 16px;
+          left: 95px; }
+        .music-player .player-container .player-header .music-album .music-singer {
+          color: #fff;
+          font-size: 14px;
+          position: absolute;
+          top: 45px;
+          left: 95px; }
+    .music-player .player-container .player-body {
+      flex: 1;
+      width: 100%;
+      height: auto;
+      background: rgba(0, 0, 0, 0.1);
+      z-index: 9; }
+    .music-player .player-container .player-footer {
+      display: block;
+      width: 100%;
+      height: 154px;
+      background: rgba(0, 0, 0, 0.1);
+      z-index: 9; }
+      .music-player .player-container .player-footer .back-to-nav {
+        display: block;
+        width: 24px;
+        height: 18px;
+        z-index: 99;
+        position: absolute;
+        bottom: 114px;
+        left: 15px;
+        background-size: 40px 350px;
+        background-position: 0 -240px;
+        background-repeat: no-repeat;
+        background-image: url(../images/sprite_play.png);
+        margin: 11px 8px 0px 8px; }
