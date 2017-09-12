@@ -5,7 +5,7 @@ document.addEventListener('click', function (event) {
         document.querySelector('.music-player').classList.add('show');
         setTimeout(function(){
             document.querySelector('.all-music-lists').classList.add('hide');            
-        },400);
+        },300);
         
         // return;
     }
