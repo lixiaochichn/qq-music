@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     document.addEventListener("click", function (event) {
-        event.preventDefault();
+        // event.preventDefault();
         let target = event.target;
         //input
         if (target === $inputseek && $inputseek.value.length === 0) {
@@ -92,6 +92,14 @@ document.addEventListener('DOMContentLoaded', function () {
             $icondel.classList.remove('hide');
             if ($inputseek.value.length > 0) {
                 startsearch();
+            };
+        } else if(target.classList.contains('hot-tip')){
+            console.log('hot-tip');
+            $inputseek.value = target.innerHTML;
+            $icondel.classList.remove('hide');
+            if ($inputseek.value.length > 0) {
+                startsearch();
+                $hotsearch.classList.add('hide'); //热门搜索-隐藏
             };
         };
     });
@@ -190,11 +198,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function rendersearch(data) {
         $searchresultlist.innerHTML += data.song.list.map(list => `
-        <li class="search-result">
+        <a href="#player?artist=${list.singer[0].name}&songid=${list.songid}&songname=${list.songname}&albummid=${list.albumid}&duration=${list.interval}" class="search-result">
         <i class="icon music-icon"></i>
         <h6 class="result-title">${list.songname}</h6>
         <p class="result-singer">${list.singer[0].name}</p>
-        </li>
+        </a>
         `).join('');
 
         if(data.zhida.singermid){
