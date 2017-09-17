@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $cleararea.classList.remove('hide'); //取消按钮-显示
             $hotsearch.classList.add('hide'); //热门搜索-隐藏
             gethistory();
-        } else if (target === $cleararea) {
+        } else if (target.matches('.cleararea')) {
             $historylists.classList.add('hide');
             $cleararea.classList.add('hide');
             $hotsearch.classList.remove('hide');
@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', function () {
             $searchfooter.classList.add('hide'); //加载动画-隐藏
             $searchfooterfinish.classList.add('hide'); //隐藏已加载全部
         } //点击取消
-        else if (target === $icondel) {
+
+        else if (target.matches(".icon-del")) {
             //圆形叉号
             $inputseek.value = '';
             $icondel.classList.add('hide');
@@ -73,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $searchresultlist.innerHTML = '';
             $searchfooterfinish.classList.add('hide'); //隐藏已加载全部
             gethistory();
-        } else if (target === $clearhistorya) {
+        } else if (target.matches(".clear-history-a")) {
             //清除所有历史记录
             console.log('clearall');
             localStorage.setItem('yqq_search_history', []);
@@ -97,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('hot-tip');
             $inputseek.value = target.innerHTML;
             $icondel.classList.remove('hide');
+            $cleararea.classList.remove('hide'); //取消按钮-显示
             if ($inputseek.value.length > 0) {
                 startsearch();
                 $hotsearch.classList.add('hide'); //热门搜索-隐藏
