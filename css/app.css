@@ -697,8 +697,8 @@ a {
       height: 2px;
       width: 100%;
       background-color: #31c27c;
-      transition: .3s;
-      transform: translateX(-99%); }
+      transition: 1s linear;
+      transform: translateX(-100%); }
 
 .btns {
   width: 100%;
