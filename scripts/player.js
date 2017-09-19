@@ -3,6 +3,7 @@ let endtime = 100;
 
 let progress = 0;
 let intervalID;
+let audiodefined = false;
 
 document.addEventListener('click', function (event) {
     let target = event.target;
@@ -11,7 +12,13 @@ document.addEventListener('click', function (event) {
         case target.matches('.download'):
             {
                 console.log('download');
-                creatAudio();
+                if(!audiodefined) {
+                    audiodefined = true;
+                    creatAudio();
+                    start();
+                }
+
+
                 document.querySelector('.music-player').classList.add('show');
                 setTimeout(function(){
                     document.querySelector('.all-music-lists').classList.add('hide');            
@@ -32,6 +39,8 @@ document.addEventListener('click', function (event) {
                 document.querySelector('.end-time').innerHTML = formatTime(endtime);    
                 document.querySelector('.start-botton').classList.remove('start');
                 document.querySelector('.start-botton').classList.add('pause');
+                console.log(window.location.href);                
+                // console.log(window.location.href.split('?')[1].toString().split('&'));
             }
             break
         case target.matches('.pause'):
@@ -99,7 +108,12 @@ document.addEventListener('click', function (event) {
 function creatAudio() {
     $audio = document.createElement('audio');
     $audio.loop = true;
+    $audio.autoplay = true;
+    // $audio.controls = true;
+    
+    $audio.src = "http://ws.stream.qqmusic.qq.com/203605063.m4a?fromtag=46";
     document.body.appendChild($audio);
+    setTimeout(renderendtime, 20);
 };
 
 function formatTime(seconds) {
@@ -109,18 +123,32 @@ function formatTime(seconds) {
     if(sec < 10) sec = '0' +sec;
     // console.log(`${min}:${sec}`);
     return `${min}:${sec}`;
+    
+};
+
+function renderendtime(){
+    endtime = $audio.duration;
+    // console.log(endtime);
+    document.querySelector(".end-time").innerHTML = formatTime(endtime);
+    // end-time;
+    // $audio.playbackRate = 2;
 };
 
 function start(){
+    $audio.play();
     intervalID = setInterval(update, 1000);
+    
 };
 
 function pause() {
+    $audio.pause();
     clearInterval(intervalID);
 };
 
 function update(){
-    starttime ++;
+    starttime = $audio.currentTime;
+    // console.log($audio.duration);
+    // console.log($audio.currentTime);
     // console.log(starttime);
     progress = starttime / endtime;
     if(starttime <= endtime) {
