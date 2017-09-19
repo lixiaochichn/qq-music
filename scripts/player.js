@@ -150,7 +150,7 @@ function update(){
     // console.log($audio.duration);
     // console.log($audio.currentTime);
     // console.log(starttime);
-    renderendtime();
+    if(starttime > 0) renderendtime();
     progress = starttime / endtime;
     if(starttime <= endtime) {
         document.querySelector('.start-time').innerHTML = formatTime(starttime);    
