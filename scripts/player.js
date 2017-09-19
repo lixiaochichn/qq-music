@@ -113,7 +113,7 @@ function creatAudio() {
     
     $audio.src = "http://ws.stream.qqmusic.qq.com/203605063.m4a?fromtag=46";
     document.body.appendChild($audio);
-    setTimeout(renderendtime, 20);
+    // setTimeout(renderendtime, 20);
 };
 
 function formatTime(seconds) {
@@ -150,6 +150,7 @@ function update(){
     // console.log($audio.duration);
     // console.log($audio.currentTime);
     // console.log(starttime);
+    renderendtime();
     progress = starttime / endtime;
     if(starttime <= endtime) {
         document.querySelector('.start-time').innerHTML = formatTime(starttime);    
