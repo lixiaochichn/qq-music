@@ -53,12 +53,19 @@
                     height: 80px;
                     width: 80px; // z-index: 999;
                 }
-                .music-name {
-                    color: #fff;
-                    font-size: 18px;
+                .music-name-cover {
+                    display: block;                    
+                    width: calc(100% - 185px);
                     position: absolute;
                     top: 16px;
-                    left: 95px;
+                    left: 95px;   
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    color: #fff;
+                    font-size: 18px;
+                    .music-name {
+                    }
                 }
                 .music-singer {
                     color: #fff;
@@ -214,7 +221,7 @@
     .player-lyrics {
         width: 100%;
         height: calc(100% - 36px);
-        overflow: hidden;        
+        overflow: hidden;
         .player-lyrics-line {
             width: 100%;
             height: 42px;

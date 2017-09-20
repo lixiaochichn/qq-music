@@ -7,7 +7,6 @@ let endtime = 100;
 let progress = 0;
 let intervalID;
 let audiodefined = false;
-let lyricstime = [];
 
 document.addEventListener('click', function (event) {
     let target = event.target;
@@ -69,8 +68,6 @@ document.addEventListener('click', function (event) {
         case target.matches('.result-title'):
         case target.matches('.result-singer'):
             {
-                document.querySelector('.start-botton').classList.remove('start');
-                document.querySelector('.start-botton').classList.add('pause');
                 console.log('search-result');
                 creatAudio();
                 renderAlbum();
@@ -106,9 +103,6 @@ function renderAlbum() {
         document.querySelector('.album-cover').src = imgurl;
         document.querySelector('.music-background').style.backgroundImage = `url(${imgurl})`;
         renderlyrics();
-        for(let i = 0; i < lyrics.length; i++) {
-            lyricstime[i] = +(lyrics[i].replace(/^\[(\d{2}):(\d{2}).*/, (match,p1,p2) => (+p1) * 60 + (+p2)));
-        }
     }, 20);
 
 };
@@ -128,7 +122,6 @@ function creatAudio() {
         document.querySelector('audio').src = `http://ws.stream.qqmusic.qq.com/${giturldata('songid')}.m4a?fromtag=46`;
         start();
     }, 20);
-
 };
 
 function formatTime(seconds) {
@@ -151,7 +144,7 @@ function renderendtime() {
 
 function start() {
     $audio.play();
-    intervalID = setInterval(update, 500);
+    intervalID = setInterval(update, 1000);
 
 };
 
@@ -161,29 +154,16 @@ function pause() {
 };
 
 function update() {
-    starttime = Math.floor($audio.currentTime);
+    starttime = $audio.currentTime;
     // console.log($audio.duration);
     // console.log($audio.currentTime);
     // console.log(starttime);
     if (starttime > 0) renderendtime();
-
     progress = starttime / endtime;
-
     if (starttime <= endtime) {
         document.querySelector('.start-time').innerHTML = formatTime(starttime);
         document.querySelector('.now-bar').style.transform = `translateX(${progress *100 - 100}%)`;
     };
-
-    for(let i = 0; i < lyrics.length; i++) {
-        if(lyricstime[i] === starttime && lyricstime[i + 1] > lyricstime[i]){
-            document.querySelector(".active").classList.remove('active');  
-            document.querySelector(".player-lyrics").children[i].classList.add('active');
-            break;
-        };
-    };
-
-    // console.log(lyricstime);
-
 };
 
 function formatText(ly) {
@@ -193,18 +173,15 @@ function formatText(ly) {
     return div.innerText.match(/^\[\d{2}:\d{2}.\d{2}\](.+)$/gm);
 }
 
-
-
 function renderlyrics(){
-    lyrics = formatText(text);
-    let lyricshtml = lyrics.map(item => `
+    let lyricshtml = formatText(text).map(item => `
     <div class="player-lyrics-line">${item.slice(10)}</div>
     `).join('');
     document.querySelector(".player-lyrics").innerHTML = lyricshtml;
 }
 
 
-//
+//formatText(text)[1].replace(/^\[(\d{2}):(\d{2}).*/, (match,p1,p2) => console.log(p1*60+p2))
 
 
 //[02:00.38]时间太漫长 我的情郎
