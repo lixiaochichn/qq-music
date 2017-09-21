@@ -1,6 +1,4 @@
-let text = "[ti&#58;我要你&#32;&#40;《驴得水》电影主题曲&#41;]&#10;[ar&#58;任素汐]&#10;[al&#58;我要你]&#10;[by&#58;]&#10;[offset&#58;0]&#10;[00&#58;00&#46;21]我要你&#32;&#40;《驴得水》电影主题曲&#41;&#32;&#45;&#32;任素汐&#10;[00&#58;01&#46;42]词：樊冲&#10;[00&#58;01&#46;56]曲：樊冲&#10;[00&#58;01&#46;71]我要&#32;你在我身旁&#10;[00&#58;06&#46;71]&#10;[00&#58;08&#46;55]我要&#32;你为我梳妆&#10;[00&#58;14&#46;16]&#10;[00&#58;15&#46;26]这夜的风儿吹&#10;[00&#58;17&#46;73]&#10;[00&#58;18&#46;62]吹得心痒痒&#32;我的情郎&#10;[00&#58;22&#46;46]我在他乡&#32;望着月亮&#10;[00&#58;28&#46;60]&#10;[00&#58;29&#46;80]都怪这月色&#32;撩人的风光&#10;[00&#58;35&#46;95]&#10;[00&#58;37&#46;01]都怪这&#32;guitar&#32;弹得太凄凉&#10;[00&#58;43&#46;20]&#10;[00&#58;44&#46;31]欧&#32;我要唱着歌&#10;[00&#58;46&#46;81]&#10;[00&#58;47&#46;59]默默把你想&#32;我的情郎&#10;[00&#58;51&#46;56]你在何方&#32;眼看天亮&#10;[00&#58;57&#46;73]&#10;[01&#58;13&#46;24]都怪这夜色&#32;撩人的风光&#10;[01&#58;19&#46;43]&#10;[01&#58;20&#46;64]都怪这guitar&#32;弹得太凄凉&#10;[01&#58;26&#46;97]&#10;[01&#58;27&#46;95]欧&#32;我要唱着歌&#10;[01&#58;30&#46;52]&#10;[01&#58;31&#46;37]默默把你想&#32;我的情郎&#10;[01&#58;34&#46;70]&#10;[01&#58;35&#46;21]你在何方&#32;眼看天亮&#10;[01&#58;41&#46;47]&#10;[01&#58;42&#46;81]我要&#32;美丽的衣裳&#10;[01&#58;48&#46;30]&#10;[01&#58;50&#46;38]为你&#32;对镜贴花黄&#10;[01&#58;55&#46;81]&#10;[01&#58;57&#46;04]这夜色太紧张&#10;[01&#58;59&#46;74]&#10;[02&#58;00&#46;38]时间太漫长&#32;我的情郎&#10;[02&#58;04&#46;36]我在他乡&#32;望着月亮";
-
-
+let lyrictext;
 let starttime = 0;
 let endtime = 100;
 
@@ -39,7 +37,7 @@ document.addEventListener('click', function (event) {
                 document.querySelector('.start-botton').classList.remove('start');
                 document.querySelector('.start-botton').classList.add('pause');
                 console.log(window.location.href);
-                giturldata('songid');
+                // giturldata('songid');
 
                 // console.log(window.location.href.split('?')[1].toString().split('&'));
             }
@@ -71,9 +69,11 @@ document.addEventListener('click', function (event) {
             {
                 document.querySelector('.start-botton').classList.remove('start');
                 document.querySelector('.start-botton').classList.add('pause');
-                console.log('search-result');
-                creatAudio();
+                // console.log('search-result');
                 renderAlbum();
+                setTimeout(function() {
+                fetchlyric(giturldata('songid'));                
+                }, 0);
                 document.querySelector('.music-player').classList.add('show');
                 setTimeout(function () {
                     document.querySelector('.all-music-lists').classList.add('hide');
@@ -91,27 +91,30 @@ document.addEventListener('click', function (event) {
 
 
 function giturldata(name) {
-    let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', '');
-    let r = window.location.href.split('?')[1].match(reg)[2];
-    if (r !== null) return r;
-    return null;
+    // setTimeout(function () {
+        let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', '');
+        let r = window.location.href.split('?')[1].match(reg)[2];
+        if (r !== null) return r;
+        return null;
+    // }, 20);
 };
 
 
 function renderAlbum() {
-    setTimeout(function() {
-        document.querySelector('.music-name').innerHTML = giturldata('songname');
-        document.querySelector('.music-singer').innerHTML = giturldata('artist');
-        let imgurl = `https://y.gtimg.cn/music/photo_new/T002R150x150M000${giturldata('albummid')}.jpg`;
-        document.querySelector('.album-cover').src = imgurl;
-        document.querySelector('.music-background').style.backgroundImage = `url(${imgurl})`;
-        renderlyrics();
-        for(let i = 0; i < lyrics.length; i++) {
-            lyricstime[i] = +(lyrics[i].replace(/^\[(\d{2}):(\d{2}).*/, (match,p1,p2) => (+p1) * 60 + (+p2)));
-        }
+    setTimeout(function () {
+    document.querySelector('.music-name').innerHTML = giturldata('songname');
+    document.querySelector('.music-singer').innerHTML = giturldata('artist');
+    let imgurl = `https://y.gtimg.cn/music/photo_new/T002R150x150M000${giturldata('albummid')}.jpg`;
+    document.querySelector('.album-cover').src = imgurl;
+    document.querySelector('.music-background').style.backgroundImage = `url(${imgurl})`;
+
+
     }, 20);
 
 };
+
+
+
 
 
 
@@ -124,12 +127,33 @@ function creatAudio() {
         document.body.appendChild($audio);
         audiodefined = true;
     }
+    // else {
+    //     document.querySelector(".active").classList.remove('active');  
+    //     document.querySelector(".player-lyrics").children[1].classList.add('active');
+    //     document.querySelector('.player-lyrics').style.transform = `translateY(84px)`;
+    // }
     setTimeout(function () {
         document.querySelector('audio').src = `http://ws.stream.qqmusic.qq.com/${giturldata('songid')}.m4a?fromtag=46`;
         start();
     }, 20);
 
 };
+
+function fetchlyric(id) {
+    fetch(`https://qq-music-api.now.sh/lyrics?id=${id}`)
+        .then(res => res.json())
+        .then(json => json.lyric)
+        .then(text => {
+            lyrictext = text;
+            renderlyrics();
+            creatAudio();
+
+        })
+}
+
+
+
+
 
 function formatTime(seconds) {
     let min = Math.floor(seconds / 60);
@@ -172,12 +196,20 @@ function update() {
     if (starttime <= endtime) {
         document.querySelector('.start-time').innerHTML = formatTime(starttime);
         document.querySelector('.now-bar').style.transform = `translateX(${progress *100 - 100}%)`;
+
     };
 
-    for(let i = 0; i < lyrics.length; i++) {
-        if(lyricstime[i] === starttime && lyricstime[i + 1] > lyricstime[i]){
-            document.querySelector(".active").classList.remove('active');  
+    // lyricstime[i] >= starttime && (lyricstime[i + 1] || (lyricstime[i] + 1)) > lyricstime[i]
+
+    for (let i = 0; i <= lyrics.length; i++) {
+        if (lyricstime[i] <= starttime && (lyricstime[i + 1] || (lyricstime[i] + 100)) > starttime) {
+            // console.log('i=' + i);
+            // console.log(starttime);
+            // console.log(lyricstime[i])
+
+            if (document.querySelector(".active")) document.querySelector(".active").classList.remove('active');
             document.querySelector(".player-lyrics").children[i].classList.add('active');
+            document.querySelector('.player-lyrics').style.transform = `translateY(${-i * 42 + 84}px)`;
             break;
         };
     };
@@ -195,12 +227,17 @@ function formatText(ly) {
 
 
 
-function renderlyrics(){
-    lyrics = formatText(text);
+function renderlyrics() {
+    lyrics = formatText(lyrictext);
     let lyricshtml = lyrics.map(item => `
     <div class="player-lyrics-line">${item.slice(10)}</div>
     `).join('');
     document.querySelector(".player-lyrics").innerHTML = lyricshtml;
+    if (document.querySelector(".active")) document.querySelector(".active").classList.remove('active');
+    for (let i = 0; i < lyrics.length; i++) {
+        lyricstime[i] = +(lyrics[i].replace(/^\[(\d{2}):(\d{2}).*/, (match, p1, p2) => (+p1) * 60 + (+p2)));
+    }
+    console.log(lyricstime);
 }
 
 
@@ -208,5 +245,3 @@ function renderlyrics(){
 
 
 //[02:00.38]时间太漫长 我的情郎
-
-

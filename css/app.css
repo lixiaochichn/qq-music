@@ -737,19 +737,28 @@ a {
     background-repeat: no-repeat; }
 
 .player-body {
-  padding-top: 36px;
-  overflow: hidden; }
-  .player-body .player-lyrics {
-    width: 100%;
-    height: calc(100% - 36px);
-    overflow: hidden; }
-    .player-body .player-lyrics .player-lyrics-line {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .player-body .lyrics-container {
+    height: calc(100% - 60px);
+    overflow: hidden;
+    width: calc(100% - 20px); }
+    .player-body .lyrics-container .player-lyrics {
+      display: block;
+      transition: .3s;
       width: 100%;
-      height: 42px;
-      line-height: 42px;
-      font-size: 16px;
-      color: rgba(255, 255, 255, 0.6);
-      text-align: center;
-      padding: 0 15px; }
-      .player-body .player-lyrics .player-lyrics-line.active {
-        color: #31c27c; }
+      transform: translateY(84px); }
+      .player-body .lyrics-container .player-lyrics .player-lyrics-line {
+        width: 100%;
+        height: 42px;
+        line-height: 42px;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.6);
+        text-align: center;
+        padding: 0 15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+        .player-body .lyrics-container .player-lyrics .player-lyrics-line.active {
+          color: #31c27c; }
