@@ -68,14 +68,14 @@ document.addEventListener('click', function (event) {
         case target.matches('.music-icon'):
         case target.matches('.result-title'):
         case target.matches('.result-singer'):
-            {
-                document.querySelector('.start-botton').classList.remove('start');
-                document.querySelector('.start-botton').classList.add('pause');
-                // console.log('search-result');
+            {   
                 renderAlbum();
                 setTimeout(function () {
                     fetchlyric(giturldata('songid'));
                 }, 0);
+                document.querySelector('.start-botton').classList.remove('start');
+                document.querySelector('.start-botton').classList.add('pause');
+                // console.log('search-result');
                 document.querySelector('.music-player').classList.add('show');
                 setTimeout(function () {
                     document.querySelector('.all-music-lists').classList.add('hide');
