@@ -135,8 +135,10 @@ function creatAudio() {
     // }
     setTimeout(function () {
         document.querySelector('audio').src = `http://ws.stream.qqmusic.qq.com/${giturldata('songid')}.m4a?fromtag=46`;
-        start();
-    }, 20);
+    }, 0);
+    setTimeout(function() {
+        start();        
+    }, 0);
 
 };
 
@@ -177,7 +179,6 @@ function renderendtime() {
 function start() {
     $audio.play();
     intervalID = setInterval(update, 500);
-
 };
 
 
