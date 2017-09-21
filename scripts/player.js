@@ -6,6 +6,7 @@ let progress = 0;
 let intervalID;
 let audiodefined = false;
 let lyricstime = [];
+let $musicplayer = document.querySelector('.music-player');
 
 document.addEventListener('click', function (event) {
     let target = event.target;
@@ -13,7 +14,7 @@ document.addEventListener('click', function (event) {
     switch (true) {
         case target.matches('.download'):
             {
-                console.log('download');
+                // console.log('download');
 
                 // creatAudio();
                 document.querySelector('.music-player').classList.add('show');
@@ -24,7 +25,7 @@ document.addEventListener('click', function (event) {
             break
         case target.matches('.back-to-nav'):
             {
-                console.log('download');
+                // console.log('download');
                 document.querySelector('.music-player').classList.remove('show');
                 document.querySelector('.all-music-lists').classList.remove('hide');
             }
@@ -36,7 +37,7 @@ document.addEventListener('click', function (event) {
                 document.querySelector('.end-time').innerHTML = formatTime(endtime);
                 document.querySelector('.start-botton').classList.remove('start');
                 document.querySelector('.start-botton').classList.add('pause');
-                console.log(window.location.href);
+                // console.log(window.location.href);
                 // giturldata('songid');
 
                 // console.log(window.location.href.split('?')[1].toString().split('&'));
@@ -71,8 +72,8 @@ document.addEventListener('click', function (event) {
                 document.querySelector('.start-botton').classList.add('pause');
                 // console.log('search-result');
                 renderAlbum();
-                setTimeout(function() {
-                fetchlyric(giturldata('songid'));                
+                setTimeout(function () {
+                    fetchlyric(giturldata('songid'));
                 }, 0);
                 document.querySelector('.music-player').classList.add('show');
                 setTimeout(function () {
@@ -92,23 +93,23 @@ document.addEventListener('click', function (event) {
 
 function giturldata(name) {
     // setTimeout(function () {
-        let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', '');
-        let r = window.location.href.split('?')[1].match(reg)[2];
-        if (r !== null) return r;
-        return null;
+    let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', '');
+    let r = window.location.href.split('?')[1].match(reg)[2];
+    if (r !== null) return r;
+    return null;
     // }, 20);
 };
 
 
 function renderAlbum() {
     setTimeout(function () {
-    document.querySelector('.music-name').innerHTML = giturldata('songname');
-    document.querySelector('.music-singer').innerHTML = giturldata('artist');
-    let imgurl = `https://y.gtimg.cn/music/photo_new/T002R150x150M000${giturldata('albummid')}.jpg`;
-    document.querySelector('.album-cover').src = imgurl;
-    document.querySelector('.music-background').style.backgroundImage = `url(${imgurl})`;
-
-
+        document.querySelector('.music-name').innerHTML = giturldata('songname');
+        document.querySelector('.music-singer').innerHTML = giturldata('artist');
+        let imgurl = `https://y.gtimg.cn/music/photo_new/T002R150x150M000${giturldata('albummid')}.jpg`;
+        document.querySelector('.album-cover').src = imgurl;
+        document.querySelector('.music-background').style.backgroundImage = `url(${imgurl})`;
+        document.querySelector(".player-lyrics").innerHTML = '<div class="player-lyrics-line">玩命加载中...</div>'
+        if(audiodefined) pause();
     }, 20);
 
 };
@@ -179,6 +180,8 @@ function start() {
 
 };
 
+
+
 function pause() {
     $audio.pause();
     clearInterval(intervalID);
@@ -207,7 +210,7 @@ function update() {
             // console.log(starttime);
             // console.log(lyricstime[i])
 
-            if (document.querySelector(".active")) document.querySelector(".active").classList.remove('active');
+            if ($musicplayer.querySelector(".active")) $musicplayer.querySelector(".active").classList.remove('active');
             document.querySelector(".player-lyrics").children[i].classList.add('active');
             document.querySelector('.player-lyrics').style.transform = `translateY(${-i * 42 + 84}px)`;
             break;
@@ -233,11 +236,11 @@ function renderlyrics() {
     <div class="player-lyrics-line">${item.slice(10)}</div>
     `).join('');
     document.querySelector(".player-lyrics").innerHTML = lyricshtml;
-    if (document.querySelector(".active")) document.querySelector(".active").classList.remove('active');
+    if ($musicplayer.querySelector(".active")) $musicplayer.querySelector(".active").classList.remove('active');
     for (let i = 0; i < lyrics.length; i++) {
         lyricstime[i] = +(lyrics[i].replace(/^\[(\d{2}):(\d{2}).*/, (match, p1, p2) => (+p1) * 60 + (+p2)));
     }
-    console.log(lyricstime);
+    // console.log(lyricstime);
 }
 
 
