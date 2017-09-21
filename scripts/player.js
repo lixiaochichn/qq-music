@@ -115,10 +115,6 @@ function renderAlbum() {
 };
 
 
-
-
-
-
 function creatAudio() {
     if (!audiodefined) {
         $audio = document.createElement('audio');
@@ -138,7 +134,7 @@ function creatAudio() {
     }, 0);
     setTimeout(function() {
         start();        
-    }, 0);
+    }, 20);
 
 };
 
