@@ -5,6 +5,7 @@ let endtime = 100;
 let progress = 0;
 let intervalID;
 let audiodefined = false;
+let touchautoplay = false;
 let lyricstime = [];
 let $musicplayer = document.querySelector('.music-player');
 
@@ -134,7 +135,7 @@ function creatAudio() {
     }, 0);
     setTimeout(function() {
         start();        
-    }, 20);
+    }, 0);
 
 };
 
@@ -239,6 +240,20 @@ function renderlyrics() {
     }
     // console.log(lyricstime);
 }
+
+// let touchautoplay = false;
+
+// if (touchautoplay)
+
+document.querySelector('html').addEventListener('touchstart', function(){
+    console.log('touch');
+    if (!touchautoplay && audiodefined) start();
+    touchautoplay = true;
+});
+
+// $('html').one('touchstart',function(){
+//     start();
+// });
 
 
 //
